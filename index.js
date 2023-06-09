@@ -32,6 +32,11 @@ const resultWrapper = document.querySelector(".results");
 const onInput = debounce(async (event) => {
   const movies = await fetchData(event.target.value);
 
+  if(!movies.length){
+    dropdown.classList.remove('is-active');
+    return;
+  }
+
   resultWrapper.innerHTML = '';
 
   dropdown.classList.add("is-active");
@@ -44,6 +49,10 @@ const onInput = debounce(async (event) => {
         <img src = "${imgSrc}" />
         ${movie.Title}
     `;
+    option.addEventListener('click',()=>{
+        dropdown.classList.remove('is-active')
+        input.value = movie.Title;
+    })
 
     resultWrapper.appendChild(option);
   }
