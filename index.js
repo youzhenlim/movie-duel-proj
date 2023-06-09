@@ -13,8 +13,21 @@ const fetchData = async (searchTerm) => {
   return response.data.Search;
 };
 
-const input = document.querySelector("input");
+const root = document.querySelector('.autocomplete');
+root.innerHTML = `
+    <label><b>Search for a movie</b></label>
+    <input class="input" />
+    <div class="dropdown">
+        <div class="dropdown-menu">
+            <div class="dropdown-content results">
+            </div>
+        </div>
+    </div>
+`;
 
+const input = document.querySelector("input");
+const dropdown = document.querySelector('.dropdwon');
+const resultWrapper = document.querySelector('.results');
 
 
 const onInput = debounce( async (event) => {
